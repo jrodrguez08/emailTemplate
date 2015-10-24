@@ -6,5 +6,9 @@
     "type": "git",
     "url": "?.git"
   },
-  "author": "Jorge Rodriguez"
+  "author": "Jorge Rodriguez",
+  "dependencies": {
+    "gulp": "~3.9.0",
+    "gulp-util": "~3.0.7"
+  }
 }
