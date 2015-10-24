@@ -9,6 +9,7 @@
   "author": "Jorge Rodriguez",
   "dependencies": {
     "gulp": "~3.9.0",
-    "gulp-util": "~3.0.7"
+    "gulp-util": "~3.0.7",
+    "gulp-template-html": "0.0.2"
   }
 }

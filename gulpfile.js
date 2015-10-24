@@ -1,6 +1,15 @@
+//----- required variables -----
+
 var gulp = require('gulp');
 var gutil = require('gulp-util');
+var template = require('gulp-template-html');
 
-gulp.task('log', function() {
-    gutil.log('Jorge es guapo');
+//----- required variables -----
+
+
+gulp.task('create', function () {
+    gulp.src('src/content/*.html')
+      .pipe(template('src/templates/template.html'))
+      .pipe(gulp.dest('src'));
+    gutil.log(gutil.colors.green('.HTML created in src folder'));
 });
