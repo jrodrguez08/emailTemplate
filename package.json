@@ -1,0 +1,10 @@
+{
+  "name": "emailTemplate",
+  "version": "0.0.1",
+  "description": "A project to automate email creation with templates and inliner tool",
+  "repository": {
+    "type": "git",
+    "url": "?.git"
+  },
+  "author": "Jorge Rodriguez"
+}
