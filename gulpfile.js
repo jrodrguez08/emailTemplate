@@ -23,7 +23,7 @@ gulp.task('inline', function () {
             applyLinkTags: true,
             removeStyleTags: false,
             removeLinkTags: true,
-            removeHtmlSelectors: true
+            removeHtmlSelectors: false
         }))
         .pipe(gulp.dest('src'));
     gutil.log(gutil.colors.green('css inlined'));
