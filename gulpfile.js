@@ -1,3 +1,4 @@
+emailName = 'emailName'
 archiveName = 'emailName.zip';
 
 //----- required variables -----
@@ -13,9 +14,25 @@ var replace = require('gulp-replace-task');
 var prettify = require('gulp-prettify');
 var zip = require('gulp-zip');
 var filesize = require('gulp-filesize');
+var mail = require('gulp-mail');
 
 //----- required variables -----
 
+//----- SMTP -----
+
+var smtpInfo = {
+    auth: {
+        user: 'verizon.email.dev@gmail.com',
+        pass: '3DDh3chF'
+    },
+    host: 'smtp.gmail.com',
+    secureConnection: true,
+    port: 25
+}
+
+//----- SMTP -----
+
+//----- email building tasks -----
 
 gulp.task('create', function () {
     gulp.src('src/content/*.html')
@@ -59,6 +76,16 @@ gulp.task('prettify', function () {
     gutil.log(gutil.colors.green('.HTML is prettier now'));
 });
 
+gulp.task('inlineEmail', function (callback) {
+    runSequence(['inline'], ['remove'], ['prettify'],
+        callback);
+    gutil.log(gutil.colors.green('email ready to be packaged'));
+});
+
+//----- email building tasks -----
+
+//----- server tasks -----
+
 gulp.task('connect', function () {
     connect.server({
         root: ['src'],
@@ -92,6 +119,10 @@ gulp.task('serve', function (callback) {
         callback);
 });
 
+//----- server tasks -----
+
+//----- package tasks -----
+
 gulp.task('copy-html-to-dist-folder', function () {
     gulp.src(['src/index.html'])
         .pipe(gulp.dest('deploy'));
@@ -105,7 +136,7 @@ gulp.task('copy-images-to-dist-folder', function () {
 });
 
 gulp.task('compress', function () {
-    return gulp.src('deploy/*')
+    gulp.src('deploy/*')
         .pipe(zip(archiveName))
         .pipe(filesize())
         .pipe(gulp.dest('delivery'));
@@ -114,4 +145,24 @@ gulp.task('compress', function () {
 gulp.task('build', function (callback) {
     runSequence(['copy-html-to-dist-folder'], ['copy-images-to-dist-folder'], ['compress'],
         callback);
+    gutil.log(gutil.colors.green('Email ready to be delivered, test it first!!!'));
 });
+
+//----- package tasks -----
+
+//----- email test tasks -----
+
+gulp.task('mail', function () {
+    return gulp.src('src/index.html')
+        .pipe(mail({
+            subject: emailName + 'Test',
+            to: [
+            'jrodrguez08@gmail.com'
+        ],
+            from: 'verizon.email.dev <verizon.email.dev@gmail.com>',
+            smtp: smtpInfo
+        }));
+    gutil.log(gutil.colors.green('Email sent!!!'));
+});
+
+//----- email test tasks -----

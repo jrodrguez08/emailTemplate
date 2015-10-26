@@ -12,6 +12,7 @@
     "gulp-connect": "^2.2.0",
     "gulp-filesize": "0.0.6",
     "gulp-inline-css": "~3.0.0",
+    "gulp-mail": "0.0.1",
     "gulp-open": "^1.0.0",
     "gulp-prettify": "~0.3.0",
     "gulp-replace-task": "^0.11.0",
