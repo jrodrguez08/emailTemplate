@@ -9,10 +9,15 @@
   "author": "Jorge Rodriguez",
   "dependencies": {
     "gulp": "~3.9.0",
+    "gulp-connect": "^2.2.0",
+    "gulp-filesize": "0.0.6",
     "gulp-inline-css": "~3.0.0",
+    "gulp-open": "^1.0.0",
     "gulp-prettify": "~0.3.0",
     "gulp-replace-task": "^0.11.0",
     "gulp-template-html": "0.0.2",
-    "gulp-util": "~3.0.7"
+    "gulp-util": "~3.0.7",
+    "gulp-zip": "^3.0.2",
+    "run-sequence": "^1.1.4"
   }
 }
