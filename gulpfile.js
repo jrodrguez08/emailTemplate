@@ -41,7 +41,7 @@ gulp.task('create', function () {
     gutil.log(gutil.colors.green('.HTML created in src folder'));
 });
 
-gulp.task('inline', function () {
+gulp.task('css', function () {
     gulp.src('src/index.html')
         .pipe(inlineCss({
             applyStyleTags: false,
@@ -76,8 +76,8 @@ gulp.task('prettify', function () {
     gutil.log(gutil.colors.green('.HTML is prettier now'));
 });
 
-gulp.task('inlineEmail', function (callback) {
-    runSequence(['inline'], ['remove'], ['prettify'],
+gulp.task('inline', function (callback) {
+    runSequence('css', 'remove', 'prettify',
         callback);
     gutil.log(gutil.colors.green('email ready to be packaged'));
 });
@@ -143,7 +143,7 @@ gulp.task('compress', function () {
 });
 
 gulp.task('build', function (callback) {
-    runSequence(['copy-html-to-dist-folder'], ['copy-images-to-dist-folder'], ['compress'],
+    runSequence('copy-html-to-dist-folder', 'copy-images-to-dist-folder', 'compress',
         callback);
     gutil.log(gutil.colors.green('Email ready to be delivered, test it first!!!'));
 });
