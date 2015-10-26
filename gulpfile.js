@@ -4,6 +4,7 @@ var gulp = require('gulp');
 var gutil = require('gulp-util');
 var template = require('gulp-template-html');
 var inlineCss = require('gulp-inline-css');
+var replace = require('gulp-replace-task');
 var prettify = require('gulp-prettify');
 
 //----- required variables -----
@@ -27,6 +28,19 @@ gulp.task('inline', function () {
         }))
         .pipe(gulp.dest('src'));
     gutil.log(gutil.colors.green('css inlined'));
+});
+
+gulp.task('remove', function () {
+    gulp.src('src/index.html')
+        .pipe(replace({
+            patterns: [
+                {
+                    match: /id=[',\"]([\w- ])*[',\"]/g,
+                    replacement: ''
+            }
+        ]
+        }))
+        .pipe(gulp.dest('src'));
 });
 
 gulp.task('prettify', function () {
