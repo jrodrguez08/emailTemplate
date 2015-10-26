@@ -36,4 +36,10 @@ gulp.task('prettify', function () {
         }))
         .pipe(gulp.dest('src'));
     gutil.log(gutil.colors.green('.HTML is prettier now'));
-})
+});
+
+gulp.task('copy-to-dist-folder', function () {
+    return gulp.src(['src/index.html', 'src/images/*.png', 'src/images/*.jpg', 'src/images/*.gif'])
+        .pipe(gulp.dest('deploy'));
+    gutil.log(gutil.colors.green('Email packaged to deploy folder'));
+});
