@@ -41,7 +41,7 @@ gulp.task('create', function () {
     gutil.log(gutil.colors.green('.HTML created in src folder'));
 });
 
-gulp.task('css', function () {
+gulp.task('inline', function () {
     gulp.src('src/index.html')
         .pipe(inlineCss({
             applyStyleTags: false,
@@ -65,6 +65,7 @@ gulp.task('remove', function () {
         ]
         }))
         .pipe(gulp.dest('src'));
+    gutil.log(gutil.colors.green('ids removed'));
 });
 
 gulp.task('prettify', function () {
@@ -76,11 +77,11 @@ gulp.task('prettify', function () {
     gutil.log(gutil.colors.green('.HTML is prettier now'));
 });
 
-gulp.task('inline', function (callback) {
-    runSequence('css', 'remove', 'prettify',
-        callback);
-    gutil.log(gutil.colors.green('email ready to be packaged'));
-});
+//gulp.task('format', function (callback) {
+//    runSequence('inline', 'remove', 'prettify',
+//        callback);
+//    gutil.log(gutil.colors.green('email ready to be packaged'));
+//});
 
 //----- email building tasks -----
 
@@ -143,7 +144,7 @@ gulp.task('compress', function () {
 });
 
 gulp.task('build', function (callback) {
-    runSequence('copy-html-to-dist-folder', 'copy-images-to-dist-folder', 'compress',
+    runSequence('copy-html-to-dist-folder', 'copy-images-to-dist-folder',
         callback);
     gutil.log(gutil.colors.green('Email ready to be delivered, test it first!!!'));
 });
