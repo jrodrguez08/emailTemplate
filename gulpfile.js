@@ -125,7 +125,7 @@ gulp.task('serve', function (callback) {
 //----- package tasks -----
 
 gulp.task('copy-html-to-dist-folder', function () {
-    gulp.src(['src/index.html'])
+    gulp.src(['src/*.html'])
         .pipe(gulp.dest('deploy'));
     gutil.log(gutil.colors.green('html packaged to deploy folder'));
 });
