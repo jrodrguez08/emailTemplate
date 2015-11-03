@@ -15,6 +15,7 @@ var prettify = require('gulp-prettify');
 var zip = require('gulp-zip');
 var filesize = require('gulp-filesize');
 var mail = require('gulp-mail');
+var argv = require('yargs').argv;
 
 //----- required variables -----
 
@@ -35,10 +36,18 @@ var smtpInfo = {
 //----- email building tasks -----
 
 gulp.task('create', function () {
-    gulp.src('src/content/*.html')
-        .pipe(template('src/templates/2columnsMarquee.html'))
-        .pipe(gulp.dest('src/'));
-    gutil.log(gutil.colors.green('.HTML created in src folder'));
+    if (argv.template == 1) {
+        gulp.src('src/content/two_column_marquee.html')
+            .pipe(template('src/templates/template.html'))
+            .pipe(gulp.dest('src/'));
+        gutil.log(gutil.colors.green('.HTML created in src folder'));
+    }
+    if (argv.template == 2) {
+        gulp.src('src/content/test.html')
+            .pipe(template('src/templates/template.html'))
+            .pipe(gulp.dest('src/'));
+        gutil.log(gutil.colors.green('.HTML created in src folder'));
+    }
 });
 
 gulp.task('inline', function () {
