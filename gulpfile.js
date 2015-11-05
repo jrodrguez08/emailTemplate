@@ -51,7 +51,7 @@ gulp.task('create', function () {
 });
 
 gulp.task('inline', function () {
-    gulp.src('src/index.html')
+    gulp.src('src/*.html')
         .pipe(inlineCss({
             applyStyleTags: false,
             applyLinkTags: true,
@@ -146,7 +146,7 @@ gulp.task('copy-images-to-dist-folder', function () {
 });
 
 gulp.task('compress', function () {
-    gulp.src('deploy/*')
+    gulp.src('deploy/**')
         .pipe(zip(archiveName))
         .pipe(filesize())
         .pipe(gulp.dest('delivery'));
